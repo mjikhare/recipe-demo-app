@@ -119,6 +119,9 @@
 
     <section id="recipes-grid" class="container">
       <div class="row no-gutters">
+        <p v-if="noResults" class="noResults mx-auto">
+          No recipes found for the given query.
+        </p>
         <div
           class="col-sm-6 col-md-4 col-lg-3 p-1"
           v-for="recipe in currentResults"
@@ -187,6 +190,7 @@ export default {
         intolerances: [],
       },
       searchDisabled: false,
+      noResults: false,
       validation: {
         valid: true,
         show: false,
@@ -303,6 +307,7 @@ export default {
   },
   methods: {
     search() {
+      this.noResults = false;
       this.validation.showMode = true;
       this.validateSearch();
       if (this.validation.valid) {
@@ -315,6 +320,9 @@ export default {
               this.results = res.results;
               this.clearForm();
               this.searchDisabled = false;
+              if (this.totalResults == 0) {
+                this.noResults = true;
+              }
             }
           });
       }
@@ -421,6 +429,11 @@ form legend {
 }
 #intolerancesCollapse input {
   margin: 0.5rem;
+}
+.noResults {
+  font-size: 120%;
+  font-weight: 600;
+  color: var(--my-light);
 }
 .recipe {
   height: 100%;

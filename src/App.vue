@@ -48,7 +48,7 @@
     <footer class="text-center">
       <span>
         Powered by the
-        <a href="https://spoonacular.com/food-api/">Spoonacular API.</a></span
+        <a href="https://spoonacular.com/food-api/">Spoonacular API</a>.</span
       >
     </footer>
 

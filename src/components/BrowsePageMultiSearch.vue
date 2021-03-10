@@ -26,7 +26,7 @@
       <option
         v-for="ingredient in datalistValues"
         :key="ingredient"
-        class="pl-2 py-1"
+        class="pl-2 py-1 multiSearchOption"
       >
         {{ ingredient }}
       </option>
@@ -65,6 +65,15 @@ export default {
             if (res) {
               this.datalistValues = res.map((obj) => obj.name);
               this.displayDatalist = true;
+              // allow closing datalist by clicking outside it
+              let closeDatalist = function (eventObj) {
+                if (!eventObj.target.classList.contains("multiSearchOption")) {
+                  this.displayDatalist = false;
+                  this.textInputValue = "";
+                }
+                window.removeEventListener("click", closeDatalist);
+              }.bind(this);
+              window.addEventListener("click", closeDatalist);
             }
           });
       }

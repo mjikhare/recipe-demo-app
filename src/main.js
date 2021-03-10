@@ -28,7 +28,6 @@ new Vue({
           url += `&${pair.key}=${pair.value}`;
         });
       }
-      console.log(`url is: ${url}`);
       return fetch(url)
         .then(r => {
           if (r.ok) {
@@ -52,22 +51,18 @@ new Vue({
         : this.savedRecipes[this.savedRecipes.length - 1].localId + 1;
     },
     localSet(recipe) {
-      console.log("ls");
       localStorage.setItem(
         `recipe-app-${recipe.localId}`,
         JSON.stringify(recipe)
       );
     },
     localGet(localId) {
-      console.log("lg");
       return JSON.parse(localStorage.getItem(`recipe-app-${localId}`));
     },
     localRemove(localId) {
-      console.log("lr");
       localStorage.removeItem(`recipe-app-${localId}`);
     },
     updateTopId() {
-      console.log("uti");
       localStorage.setItem(
         "recipe-app-top-localId",
         `${this.savedRecipes[this.savedRecipes.length - 1].localId}`
@@ -76,7 +71,6 @@ new Vue({
   },
   created() {
     //retrieve localstorage
-    console.log("in created");
     let topId = parseInt(localStorage.getItem("recipe-app-top-localId"));
     if (!isNaN(topId)) {
       for (let i = 0; i <= topId; i++) {

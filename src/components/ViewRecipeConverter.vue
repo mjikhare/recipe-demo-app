@@ -93,7 +93,7 @@ export default {
           cups: { str: "cups", factor: 0.0625 },
           ml: { str: "ml", factor: 14.79 },
           l: { str: "l", factor: 0.01479 },
-          floz: { str: "fl oz", factor: 0.5 },
+          "fl oz": { str: "fl oz", factor: 0.5 },
         },
         weight: {
           //factor is equivalent in oz
@@ -121,6 +121,7 @@ export default {
         from = [this.model.fromVolume];
         if (from[0] == "") from = Object.keys(this.units.vol); //case where from = Any
         this.ingredients.forEach((ingr) => {
+          console.log(this.units.vol[this.model.toVolume]);
           if (from.includes(ingr.unitInternal)) {
             ingr.amount = this.formatNumber(
               (ingr.amount / this.units.vol[ingr.unitInternal].factor) *
