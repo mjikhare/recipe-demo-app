@@ -369,7 +369,7 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1000;
-  --editRecipe-content-width: 60vw;
+  --editRecipe-content-width: 100vw;
 }
 .editRecipe-inner {
   width: var(--editRecipe-content-width);
@@ -385,43 +385,48 @@ form {
 hr {
   border-color: var(--bg-light);
 }
-.editRecipe-ingr-x {
-  display: none;
+.editRecipe-ingr-legend {
+  font-size: 95%;
+  font-style: italic;
 }
 .editRecipe-bottom-btn {
-  width: 15rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
-@media screen and (max-width: 1199px) {
-  .editRecipe {
-    --editRecipe-content-width: 75vw;
-  }
+.editRecipe-ingr-remove {
+  display: none;
 }
-@media screen and (max-width: 999px) {
+@media screen and (min-width: 800px) {
   .editRecipe {
     --editRecipe-content-width: 85vw;
   }
 }
-@media screen and (max-width: 799px) {
+@media screen and (min-width: 1000px) {
   .editRecipe {
-    --editRecipe-content-width: 100vw;
+    --editRecipe-content-width: 75vw;
   }
 }
-@media screen and (max-width: 575px) {
-  .editRecipe-ingr-legend {
-    font-size: 95%;
-    font-style: italic;
-  }
-  .editRecipe-bottom-btn {
-    width: 100%;
-    margin-bottom: 0.5rem;
+@media screen and (min-width: 1200px) {
+  .editRecipe {
+    --editRecipe-content-width: 60vw;
   }
 }
-@media screen and (max-width: 499px) {
+@media screen and (min-width: 500px) {
   .editRecipe-ingr-remove {
-    display: none;
+    display: block;
   }
   .editRecipe-ingr-x {
-    display: block;
+    display: none;
+  }
+}
+@media screen and (min-width: 576px) {
+  .editRecipe-ingr-legend {
+    font-size: unset;
+    font-style: normal;
+  }
+  .editRecipe-bottom-btn {
+    width: 15rem;
+    margin-bottom: 0;
   }
 }
 </style>

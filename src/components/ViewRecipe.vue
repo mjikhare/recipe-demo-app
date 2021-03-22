@@ -366,7 +366,7 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1000;
-  --viewRecipe-content-width: 60vw;
+  --viewRecipe-content-width: 100vw;
 }
 .viewRecipe-inner {
   width: var(--viewRecipe-content-width);
@@ -374,24 +374,22 @@ export default {
   color: var(--my-dark-darker);
 }
 .viewRecipe-buttons {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: calc((100vw - var(--viewRecipe-content-width)) / 2);
+  position: absolute;
+  bottom: -180px;
   z-index: 1;
+  width: 100%;
 }
 .viewRecipe-buttons > div {
-  flex-direction: column;
-  margin-top: 4rem;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .viewRecipe-button {
-  width: 10rem;
-  max-width: 90%;
+  margin: 0 0.7rem 0.6rem 0.7rem;
   height: 3rem;
   border: 1px solid var(--contrast-darker) !important;
   font-weight: 800 !important;
-  margin-bottom: 0.7rem;
   box-shadow: 0.2rem 0.2rem 0.1rem var(--contrast-darker) !important;
+  width: 100%;
 }
 .viewRecipe-button:focus,
 .viewRecipe-button:hover:not(:disabled),
@@ -408,7 +406,6 @@ export default {
   max-height: 75vh;
 }
 .main-image-bg {
-  padding: 1.2rem 1.4rem;
   background-color: var(--bg-light);
 }
 .viewRecipe-content {
@@ -422,6 +419,7 @@ export default {
   background-color: var(--contrast);
   text-shadow: 2px 2px 3px var(--contrast-darker);
   padding: 1rem 2rem;
+  margin-bottom: 180px;
 }
 .viewRecipe-heading {
   font-weight: 800;
@@ -446,74 +444,78 @@ export default {
   font-size: 1.3rem;
   font-weight: 800;
 }
-@media screen and (max-width: 1099px) {
-  #viewRecipe {
-    --viewRecipe-content-width: 70vw;
-  }
+.small-screen-hook {
+  position: relative;
 }
-@media screen and (max-width: 929px) {
-  #viewRecipe {
-    --viewRecipe-content-width: 80vw;
-  }
+@media screen and (min-width: 370px) {
   .viewRecipe-buttons {
-    top: 25px;
-    left: unset;
+    top: 0.5rem;
+    bottom: auto;
     position: sticky;
-    width: initial;
   }
-  .viewRecipe-buttons > div {
-    flex-direction: row;
-    margin-top: 0;
-  }
-  .main-image-bg {
-    margin-top: -48px;
-    position: relative;
+  .title {
+    margin-bottom: 0;
   }
   .viewRecipe-button {
     flex-grow: 1;
-    margin: 0 0.7rem;
+    margin-bottom: 0;
+    width: 10rem;
+  }
+  .viewRecipe-buttons > div {
+    flex-wrap: nowrap;
+  }
+  .main-image-bg {
+    position: relative;
+    margin-top: -48px;
+  }
+  .small-screen-hook {
+    position: static;
   }
 }
-@media screen and (max-width: 829px) {
+@media screen and (min-width: 600px) {
+  .main-image-bg {
+    padding: 1.2rem 1.4rem;
+  }
+  .viewRecipe-buttons {
+    top: 25px;
+  }
+}
+@media screen and (min-width: 740px) {
   #viewRecipe {
     --viewRecipe-content-width: 90vw;
   }
 }
-@media screen and (max-width: 739px) {
+@media screen and (min-width: 830px) {
   #viewRecipe {
-    --viewRecipe-content-width: 100vw;
+    --viewRecipe-content-width: 80vw;
   }
 }
-@media screen and (max-width: 599px) {
-  .main-image-bg {
-    padding: 0;
+@media screen and (min-width: 930px) {
+  #viewRecipe {
+    --viewRecipe-content-width: 70vw;
   }
   .viewRecipe-buttons {
-    top: 0.5rem;
-  }
-}
-@media screen and (max-width: 369px) {
-  .viewRecipe-buttons {
-    position: absolute;
-    top: auto !important;
-    bottom: -180px;
-  }
-  .title {
-    margin-bottom: 180px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc((100vw - var(--viewRecipe-content-width)) / 2);
   }
   .viewRecipe-buttons > div {
-    flex-wrap: wrap;
-  }
-  .viewRecipe-button {
-    flex-basis: 100%;
-    margin-bottom: 0.6rem;
+    flex-direction: column;
+    margin-top: 4rem;
   }
   .main-image-bg {
     position: static;
     margin-top: 0;
   }
-  .small-screen-hook {
-    position: relative;
+  .viewRecipe-button {
+    margin-bottom: 0.7rem;
+    max-width: 90%;
+  }
+}
+@media screen and (min-width: 1100px) {
+  #viewRecipe {
+    --viewRecipe-content-width: 60vw;
   }
 }
 </style>

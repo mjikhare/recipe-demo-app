@@ -108,7 +108,7 @@ export default {
   --my-dark: #5a795b; /* #2b4c2c; /* #2c3e50 */
   --my-dark-darker: #465e47;
   --my-black: #303030;
-  --nav-height: 6rem;
+  --nav-height: 8rem;
   --footer-height: 6rem;
 }
 #app {
@@ -131,6 +131,7 @@ export default {
   background-color: var(--bg);
   display: flex;
   align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -145,14 +146,22 @@ export default {
 .nav ul {
   margin-bottom: 0;
   display: flex;
+  flex-wrap: wrap;
   font-weight: 600;
+  align-content: space-evenly;
+  height: 100%;
 }
 .nav ul li {
-  margin-left: 3rem;
+  width: 100%;
+  margin: 0;
+}
+.nav li:first-child {
+  margin-bottom: 0.5rem;
 }
 .nav a {
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 .nav svg {
@@ -161,49 +170,46 @@ export default {
 .logo {
   height: 60%;
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: margin-left 300ms ease-in-out;
+  right: 2rem;
+  max-width: 40%;
+  display: none;
 }
-@media screen and (max-width: 1099px) {
-  .nav ul li {
-    margin-left: 1.5rem;
-  }
-}
-@media screen and (max-width: 959px) {
-  .logo {
-    left: unset;
-    transform: unset;
-    right: 2rem;
-    max-width: 40%;
-  }
-}
-@media screen and (max-width: 649px) {
-  .logo {
-    display: none;
-  }
-}
-@media screen and (max-width: 359px) {
+@media screen and (min-width: 360px) {
   :root {
-    --nav-height: 8rem;
+    --nav-height: 6rem;
   }
   .nav {
-    justify-content: center;
+    justify-content: start;
   }
   .nav ul {
-    flex-wrap: wrap;
-    align-content: space-evenly;
-    height: 100%;
+    height: auto;
   }
   .nav ul li {
-    width: 100%;
-    margin: 0;
+    width: auto;
+    margin-left: 1.5rem;
   }
   .nav li:first-child {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
-  .nav ul a {
-    justify-content: center;
+  .nav a {
+    justify-content: start;
+  }
+}
+@media screen and (min-width: 650px) {
+  .logo {
+    display: block;
+  }
+}
+@media screen and (min-width: 960px) {
+  .logo {
+    left: 50%;
+    right: unset;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (min-width: 1100px) {
+  .nav ul li {
+    margin-left: 3rem;
   }
 }
 /* end header styles */

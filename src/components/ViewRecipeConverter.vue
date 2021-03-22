@@ -211,17 +211,16 @@ select {
   width: 70%;
 }
 .converter-button-container {
-  width: 45%;
-  justify-content: space-around;
+  width: 65%;
 }
-@media screen and (max-width: 429px) {
+@media screen and (min-width: 380px) {
   .converter-button-container {
     width: 50%;
   }
 }
-@media screen and (max-width: 379px) {
+@media screen and (min-width: 430px) {
   .converter-button-container {
-    width: 65%;
+    width: 45%;
   }
 }
 </style>

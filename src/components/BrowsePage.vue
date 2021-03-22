@@ -85,19 +85,19 @@
               <b-button
                 class="intolerancesButton darkButton"
                 href="#"
-                v-b-toggle:intolerancesCollapse
+                @click="intolerancesCollapseOpen = !intolerancesCollapseOpen"
                 block
                 >Specify Intolerances</b-button
               >
               <b-collapse
-                id="intolerancesCollapse"
-                class="position-absolute text-left container"
+                v-model="intolerancesCollapseOpen"
+                class="intolerancesCollapse position-absolute text-left container"
               >
                 <div class="row pt-2 px-lg-0">
                   <div
                     v-for="intolerance in intolerances"
                     :key="intolerance.query"
-                    class="form-check col-6 col-xl-4 mb-3 intoleranceFormGroup"
+                    class="form-check mb-3 intoleranceFormGroup"
                   >
                     <input
                       :id="intolerance.query"
@@ -287,6 +287,7 @@ export default {
           query: "wheat",
         },
       ],
+      intolerancesCollapseOpen: false,
     };
   },
   computed: {
@@ -374,6 +375,7 @@ export default {
         diet: "",
         intolerances: [],
       };
+      this.intolerancesCollapseOpen = false;
     },
     openRecipe(id) {
       this.modal.id = id;
@@ -411,24 +413,35 @@ form legend {
   font-size: inherit;
 }
 .optional-params-wrapper {
-  height: 5.37rem;
+  height: auto;
 }
 .optional-params {
   max-height: 3rem;
   max-width: 100%;
+  margin-bottom: 1.5rem;
 }
 .intolerancesButton:hover,
 .intolerancesButton:active,
 .intolerancesButton:focus {
   box-shadow: none !important;
 }
-#intolerancesCollapse {
+.intolerancesCollapse {
   z-index: 1;
   background-color: var(--my-light);
   box-shadow: 0 0 1rem var(--my-dark);
 }
-#intolerancesCollapse input {
+.intolerancesCollapse .form-check {
+  padding: 0;
+}
+.intolerancesCollapse > div {
+  padding: 0 0.5rem 0 0.5rem;
+}
+.intolerancesCollapse input {
   margin: 0.5rem;
+}
+.intoleranceFormGroup {
+  flex-basis: 100%;
+  max-width: 100%;
 }
 .noResults {
   font-size: 120%;
@@ -457,12 +470,16 @@ form legend {
   left: 50%;
   transform: translateX(-50%);
 }
-@media screen and (max-width: 991px) {
-  #intolerancesCollapse .form-check {
-    padding: 0;
+@media screen and (min-width: 356px) {
+  .intoleranceFormGroup {
+    flex-basis: 50%;
+    max-width: 50%;
   }
-  #intolerancesCollapse > div {
-    padding: 0 0.5rem 0 0.5rem;
+  .optional-params-wrapper {
+    height: 5.37rem;
+  }
+  .optional-params {
+    margin-bottom: 0;
   }
 }
 @media screen and (min-width: 576px) {
@@ -470,16 +487,15 @@ form legend {
     position: absolute;
   }
 }
-@media screen and (max-width: 355px) {
+@media screen and (min-width: 992px) {
+  .intolerancesCollapse .form-check {
+    padding-left: 1.25rem;
+  }
+}
+@media screen and (min-width: 1200px) {
   .intoleranceFormGroup {
-    flex-basis: 100% !important;
-    max-width: 100% !important;
-  }
-  .optional-params-wrapper {
-    height: auto;
-  }
-  .optional-params {
-    margin-bottom: 1.5rem;
+    flex-basis: 33.333333%;
+    max-width: 33.333333%;
   }
 }
 </style>
