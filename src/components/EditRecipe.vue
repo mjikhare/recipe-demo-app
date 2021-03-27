@@ -144,7 +144,7 @@
           v-for="(ingr, index) in recipe.ingredients"
           :key="`ingr${index}`"
           :id="`edit-ingredients${index}`"
-          class="row form-group no-gutters"
+          class="row form-group no-gutters flex-nowrap"
         >
           <div class="col-10 col-sm-12 row no-gutters pr-2">
             <div class="col-6 col-sm-2 pr-1">

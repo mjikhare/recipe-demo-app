@@ -85,7 +85,7 @@
               <b-button
                 class="intolerancesButton darkButton"
                 href="#"
-                @click="intolerancesCollapseOpen = !intolerancesCollapseOpen"
+                @click="toggleIntolerancesCollapse"
                 block
                 >Specify Intolerances</b-button
               >
@@ -307,6 +307,29 @@ export default {
     },
   },
   methods: {
+    toggleIntolerancesCollapse() {
+      let wrapper = document.querySelector(".browse-wrapper");
+      let collapse = document.querySelector(".intolerancesCollapse");
+      this.intolerancesCollapseOpen = !this.intolerancesCollapseOpen;
+      //the below code dynamically updates .browser-wrapper's padding throughout .intolerancesCollapse's dropdown animation to make room for it since it's an absolutely positioned element, with fixed padding i was getting strage bugs of it overflowing the page sometimes
+      let animationStarted = false;
+      let animationStopped = false;
+      let prevValue = collapse.offsetHeight;
+      function updateElement() {
+        if (collapse.offsetHeight != prevValue) animationStarted = true;
+        if (animationStarted && collapse.offsetHeight == prevValue) {
+          animationStopped = true;
+        }
+        prevValue = collapse.offsetHeight;
+        wrapper.style.setProperty(
+          "--browse-wrapper-padding-bottom",
+          `${collapse.offsetHeight}px`
+        );
+        let rAF = requestAnimationFrame(updateElement);
+        if (animationStarted && animationStopped) cancelAnimationFrame(rAF);
+      }
+      requestAnimationFrame(updateElement);
+    },
     search() {
       this.noResults = false;
       this.validation.showMode = true;
@@ -395,9 +418,11 @@ export default {
 
 <style scoped>
 .browse-wrapper {
+  --browse-wrapper-padding-bottom: 0px;
   padding-top: 2rem;
-  padding-bottom: 7rem;
+  padding-bottom: var(--browse-wrapper-padding-bottom);
   position: relative;
+  transition: padding-bottom 100ms;
 }
 .multi-search {
   padding-left: 0;

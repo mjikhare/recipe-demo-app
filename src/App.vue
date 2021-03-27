@@ -83,7 +83,6 @@ export default {
     }
   },
   mounted() {
-    console.log("mounted");
     let nav = document.querySelector(".nav");
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 0) {
