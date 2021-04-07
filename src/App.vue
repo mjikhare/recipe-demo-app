@@ -16,7 +16,7 @@
                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
               />
             </svg>
-            SEARCH FOR RECIPES</a
+            SEARCH</a
           >
         </li>
         <li @click="tab = 2">
@@ -36,13 +36,31 @@
             MY RECIPES</a
           >
         </li>
+        <li @click="tab = 3">
+          <a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-info-circle-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+              />
+            </svg>
+            ABOUT</a
+          >
+        </li>
       </ul>
       <img src="./assets/logo.png" class="logo" alt="Recipe App Logo" />
     </header>
     <main class="main-container container">
       <keep-alive>
-        <Browse v-if="tab == 1"></Browse>
-        <Saved v-else></Saved>
+        <BrowsePage v-if="tab == 1"></BrowsePage>
+        <SavedPage v-if="tab == 2"></SavedPage>
+        <AboutPage v-if="tab == 3"></AboutPage>
       </keep-alive>
     </main>
     <footer class="text-center">
@@ -63,8 +81,9 @@
 </template>
 
 <script>
-import Browse from "./components/BrowsePage.vue";
-import Saved from "./components/SavedPage.vue";
+import BrowsePage from "./components/BrowsePage.vue";
+import SavedPage from "./components/SavedPage.vue";
+import AboutPage from "./components/AboutPage.vue";
 export default {
   data() {
     return {
@@ -73,8 +92,9 @@ export default {
     };
   },
   components: {
-    Browse,
-    Saved,
+    BrowsePage,
+    SavedPage,
+    AboutPage,
   },
   created() {
     if (!localStorage.getItem("recipe-app-warning-given")) {
@@ -96,8 +116,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
-/* https://fonts.google.com/specimen/Open+Sans?standard-styles=&selection.family=Open+Sans:wght@300;400;600;700 */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap");
 :root {
   --bg: #00a86b;
   --bg-light: #adffe1;

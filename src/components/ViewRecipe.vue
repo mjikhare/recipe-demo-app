@@ -185,11 +185,11 @@
       hide-footer
       header-class="convert-modal-header"
     >
-      <Converter
+      <ViewRecipeConverter
         :ingredients-prop="recipe.ingredients"
         @conversionDone="conversionDone"
         @close="openConverter = false"
-      ></Converter>
+      ></ViewRecipeConverter>
     </b-modal>
 
     <b-modal
@@ -208,9 +208,9 @@
 </template>
 
 <script>
-import Converter from "./ViewRecipeConverter.vue";
+import ViewRecipeConverter from "./ViewRecipeConverter.vue";
 export default {
-  components: { Converter },
+  components: { ViewRecipeConverter },
   props: ["recipeId", "recipeLocalid"],
   emits: ["closeRecipe", "editRecipe"],
   data() {

@@ -44,18 +44,18 @@
 
           <div class="form-group">
             <label for="includeIngredients">Ingredients to include</label>
-            <MultiSearch
+            <BrowsePageMultiSearch
               v-model="model.includeIngredients"
               id="includeIngredients"
-            ></MultiSearch>
+            ></BrowsePageMultiSearch>
           </div>
 
           <div class="form-group">
             <label for="excludeIngredients">Ingredients to exclude</label>
-            <MultiSearch
+            <BrowsePageMultiSearch
               v-model="model.excludeIngredients"
               id="excludeIngredients"
-            ></MultiSearch>
+            ></BrowsePageMultiSearch>
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -165,12 +165,12 @@
 </template>
 
 <script>
-import MultiSearch from "./BrowsePageMultiSearch.vue";
+import BrowsePageMultiSearch from "./BrowsePageMultiSearch.vue";
 import ViewRecipe from "./ViewRecipe.vue";
 import EditRecipe from "./EditRecipe.vue";
 export default {
   components: {
-    MultiSearch,
+    BrowsePageMultiSearch,
     ViewRecipe,
     EditRecipe,
   },
