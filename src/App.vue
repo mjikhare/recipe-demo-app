@@ -69,14 +69,6 @@
         <a href="https://spoonacular.com/food-api/">Spoonacular API</a>.</span
       >
     </footer>
-
-    <b-modal v-model="giveWarning" title="Please Note:" hide-footer>
-      This app is for demo purposes. Data is only persisted in browser's local
-      storage and will be deleted if offline website data is cleared.
-      <div class="mt-3 text-center">
-        <b-button @click="giveWarning = false" class="darkButton">OK</b-button>
-      </div>
-    </b-modal>
   </div>
 </template>
 
@@ -88,19 +80,12 @@ export default {
   data() {
     return {
       tab: 1,
-      giveWarning: false,
     };
   },
   components: {
     BrowsePage,
     SavedPage,
     AboutPage,
-  },
-  created() {
-    if (!localStorage.getItem("recipe-app-warning-given")) {
-      this.giveWarning = true;
-      localStorage.setItem("recipe-app-warning-given", "true");
-    }
   },
   mounted() {
     let nav = document.querySelector(".nav");
