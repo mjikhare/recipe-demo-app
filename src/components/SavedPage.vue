@@ -61,8 +61,6 @@
 </template>
 
 <script>
-import ViewRecipe from "./ViewRecipe.vue";
-import EditRecipe from "./EditRecipe.vue";
 export default {
   data() {
     return {
@@ -80,8 +78,14 @@ export default {
     };
   },
   components: {
-    ViewRecipe,
-    EditRecipe,
+    ViewRecipe: () =>
+      import(
+        /* webpackChunkName: 'viewRecipe' */ /* webpackPrefetch: true */ "./ViewRecipe.vue"
+      ),
+    EditRecipe: () =>
+      import(
+        /* webpackChunkName: 'viewRecipe' */ /* webpackPrefetch: true */ "./EditRecipe.vue"
+      ),
   },
   methods: {
     createRecipe() {

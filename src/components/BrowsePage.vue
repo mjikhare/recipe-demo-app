@@ -166,13 +166,17 @@
 
 <script>
 import BrowsePageMultiSearch from "./BrowsePageMultiSearch.vue";
-import ViewRecipe from "./ViewRecipe.vue";
-import EditRecipe from "./EditRecipe.vue";
 export default {
   components: {
     BrowsePageMultiSearch,
-    ViewRecipe,
-    EditRecipe,
+    ViewRecipe: () =>
+      import(
+        /* webpackChunkName: 'viewRecipe' */ /* webpackPrefetch: true */ "./ViewRecipe.vue"
+      ),
+    EditRecipe: () =>
+      import(
+        /* webpackChunkName: 'viewRecipe' */ /* webpackPrefetch: true */ "./EditRecipe.vue"
+      ),
   },
   data() {
     return {

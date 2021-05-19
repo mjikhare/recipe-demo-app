@@ -74,8 +74,6 @@
 
 <script>
 import BrowsePage from "./components/BrowsePage.vue";
-import SavedPage from "./components/SavedPage.vue";
-import AboutPage from "./components/AboutPage.vue";
 export default {
   data() {
     return {
@@ -84,8 +82,10 @@ export default {
   },
   components: {
     BrowsePage,
-    SavedPage,
-    AboutPage,
+    SavedPage: () =>
+      import(/* webpackChunkName: 'savedPage' */ "./components/SavedPage.vue"),
+    AboutPage: () =>
+      import(/* webpackChunkName: 'savedPage' */ "./components/AboutPage.vue"),
   },
   mounted() {
     let nav = document.querySelector(".nav");
